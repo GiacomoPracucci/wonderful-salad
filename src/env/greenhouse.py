@@ -1,6 +1,8 @@
 import gymnasium as gym
 from gymnasium import spaces
 import numpy as np
+from env.update_environment import _update_environment
+from env.reward_function import reward_function
 
 class SaladGreenHouse(gym.Env):
     def __init__(self):
@@ -47,7 +49,7 @@ class SaladGreenHouse(gym.Env):
             "temperature": np.array([temperature], dtype= np.float32)  # Temperatura iniziale della giornata
         }
 
-        reward = 0
+        reward = reward_function(self.state, action)
         
         terminated = time >= 1439
         truncated = False
@@ -61,6 +63,3 @@ class SaladGreenHouse(gym.Env):
         pass
     def seed(self, seed=None):
         pass
-        
-        
-    
