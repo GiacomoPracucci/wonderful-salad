@@ -1,3 +1,5 @@
+import sys
+sys.path.append('C:/Users/giaco/Desktop/repos/wonderful-salad/src')
 import gymnasium as gym
 from gymnasium import spaces
 import numpy as np
@@ -8,7 +10,7 @@ class SaladGreenHouse(gym.Env):
     def __init__(self):
         super().__init__()
         
-        self.action_space = gym.spaces.Box(low = [0, -10, 0], high = [10, 10, 100], 
+        self.action_space = gym.spaces.Box(low = np.array([0, -10, 0]), high = np.array([10, 10, 100]), 
                                        dtype = np.float32)
         self.observation_space = gym.spaces.Dict({
             "time": gym.spaces.Discrete(1440),
@@ -39,7 +41,7 @@ class SaladGreenHouse(gym.Env):
         return self.state
     
     def step(self, action):
-        time, solar_light, artificial_light, soil_moisture, temperature = self._update_environment(action)
+        time, solar_light, artificial_light, soil_moisture, temperature = _update_environment(self, action)
         
         self.state = {
             "time": np.array([time], dtype= np.float32),  # Inizio del giorno

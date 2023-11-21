@@ -1,3 +1,5 @@
+import sys
+sys.path.append('C:/Users/giaco/Desktop/repos/wonderful-salad/src')
 from env.greenhouse import SaladGreenHouse
 
 env = SaladGreenHouse()
